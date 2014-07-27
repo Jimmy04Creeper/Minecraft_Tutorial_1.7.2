@@ -23,7 +23,7 @@ public class HandH{
     	//Add all blocks in mod.
     	new HHBlocks();
     	
-    	//Creative Tabs for mod.
+    	//Creative Tabs for mod to be added when nesseresy
     	new HHCreativeTabs();
     }
 }
