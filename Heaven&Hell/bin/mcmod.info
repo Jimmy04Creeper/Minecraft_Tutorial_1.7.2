@@ -1,0 +1,16 @@
+[
+{
+  "modid": "Heaven & Hell Mod",
+  "name": "Heaven & Hell Mod",
+  "description": "Help for people creating a dimension.",
+  "version": "0.1",
+  "mcversion": "1.7.10+",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Jimmy04Creeper],
+  "credits": "The Forge and FML guys, Minecraft and all others who have helped :D",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
