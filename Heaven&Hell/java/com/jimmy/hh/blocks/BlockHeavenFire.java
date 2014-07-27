@@ -305,7 +305,7 @@ public class BlockHeavenFire extends BlockFire
 		{
 			par1World.playSound(par2 + 0.5F, par3 + 0.5F, par4 + 0.5F, "fire.fire", 1.0F + par5Random.nextFloat(), par5Random.nextFloat() * 0.7F + 0.3F, false);
 		}
-		if ((!par1World.doesBlockHaveSolidTopSurface(par1World, par2, par3 - 1, par4)) && (!((BlockHeavenFire) HHBlocks.heavenPortal).canBlockCatchFire(par1World, par2, par3 - 1, par4, ForgeDirection.UP)))
+		if ((!par1World.doesBlockHaveSolidTopSurface(par1World, par2, par3 - 1, par4)) && (!((BlockHeavenFire) HHBlocks.heavenFire).canBlockCatchFire(par1World, par2, par3 - 1, par4, ForgeDirection.UP)))
 		{
 			if (((BlockHeavenFire) HHBlocks.heavenFire).canBlockCatchFire(par1World, par2 - 1, par3, par4, ForgeDirection.EAST))
 			{
@@ -386,11 +386,14 @@ public class BlockHeavenFire extends BlockFire
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
 		this.blockIcon = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + "heavenFire_0");
-		this.iconArray = new IIcon[] { par1IconRegister.registerIcon(Reference.MOD_ID + ":" + "heavenFire_0"), par1IconRegister.registerIcon(Reference.MOD_ID + ":" + "heavenFire_1") };
+		
+		this.iconArray = new IIcon[] { 
+				par1IconRegister.registerIcon(Reference.MOD_ID + ":" + "heavenFire_0"), par1IconRegister.registerIcon(Reference.MOD_ID + ":" + "heavenFire_1")
+				};
 	}
 
 	@SideOnly(Side.CLIENT)
-	public IIcon func_94438_c(int par1) {
+	public IIcon getIIcon(int par1) {
 		return this.iconArray[par1];
 	}
 }

@@ -24,13 +24,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockHeavenPortal extends BlockBreakable
 {
-	public BlockHeavenPortal()
+	public BlockHeavenPortal(String blockName)
 	{
 		super(Reference.MOD_ID + ":" + "heavenPortal", Material.portal, false);
 		this.setTickRandomly(true);
 		this.setHardness(-1.0F);
 		this.setStepSound(soundTypeGlass);
 		this.setCreativeTab(HHCreativeTabs.hhBlocks);
+		this.setBlockName(blockName);
 	}
 	
 	/**
