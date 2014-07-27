@@ -1,6 +1,7 @@
 package com.jimmy.hh;
 
 import com.jimmy.hh.blocks.HHBlocks;
+import com.jimmy.hh.dimension.Dimensions;
 import com.jimmy.hh.reference.Reference;
 import com.jimmy.hh.tabs.HHCreativeTabs;
 
@@ -25,5 +26,8 @@ public class HandH{
     	
     	//Creative Tabs for mod.
     	new HHCreativeTabs();
+    	
+    	//Dimensions
+    	new Dimensions();
     }
 }

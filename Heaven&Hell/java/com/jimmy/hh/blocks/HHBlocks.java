@@ -12,6 +12,7 @@ public class HHBlocks {
 	public static final Block heavenGrass =  new BlockHeavenGrass("heavenGrass", Material.grass, 0.2F);
 	public static final Block heavenLeaf = new BlockHeavenLeaf("heavenLeaf", Material.leaves, 0.2F);
 	public static final Block heavenLog = new BlockHeavenLog("heavenLog", Material.wood, 0.4F);
+	
 	public static final BlockHeavenFire heavenFire = new BlockHeavenFire("heavenFire");
 	public static final BlockHeavenPortal heavenPortal = new BlockHeavenPortal("heavenPortal");
 	
@@ -21,6 +22,7 @@ public class HHBlocks {
 		GameRegistry.registerBlock(heavenGrass, heavenGrass.getLocalizedName());
 		GameRegistry.registerBlock(heavenLeaf, heavenLeaf.getLocalizedName());
 		GameRegistry.registerBlock(heavenLog, heavenLog.getLocalizedName());
+		
 		GameRegistry.registerBlock(heavenFire, heavenFire.getLocalizedName());
 		GameRegistry.registerBlock(heavenPortal, heavenPortal.getLocalizedName());
 	}

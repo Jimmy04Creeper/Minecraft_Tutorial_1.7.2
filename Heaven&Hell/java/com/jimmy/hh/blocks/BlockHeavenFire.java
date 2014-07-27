@@ -66,41 +66,7 @@ public class BlockHeavenFire extends BlockFire
 		Blocks.fire.func_149842_a(getIdFromBlock(Blocks.carpet), 60, 20);
 	}
 
-	private void setBurnRate(int par1, int par2, int par3)
-	{
-		this.setFireInfo((Block)Block.blockRegistry.getObjectById(par1), par2, par3);
-	}
-
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
-	{
-		return null;
-	}
-
-	public boolean isOpaqueCube()
-	{
-		return false;
-	}
-
-	public boolean renderAsNormalBlock()
-	{
-		return false;
-	}
-
-	public int getRenderType()
-	{
-		return 3;
-	}
-
-	public int quantityDropped(Random par1Random)
-	{
-		return 0;
-	}
-
-	public int tickRate(World par1World)
-	{
-		return 30;
-	}
-
+	@Override
 	public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
 	{
 		if (par1World.getGameRules().getGameRuleBooleanValue("doFireTick"))
@@ -185,16 +151,6 @@ public class BlockHeavenFire extends BlockFire
 				}
 			}
 		}
-	}
-
-	public boolean func_82506_l()
-	{
-		return true;
-	}
-
-	@Deprecated
-	private void tryToCatchBlockOnFire(World par1World, int par2, int par3, int par4, int par5, Random par6Random, int par7) {
-		tryToCatchBlockOnFire(par1World, par2, par3, par4, par5, par6Random, par7, ForgeDirection.UP);
 	}
 
 	private void tryToCatchBlockOnFire(World par1World, int par2, int par3, int par4, int par5, Random par6Random, int par7, ForgeDirection face) {
@@ -382,8 +338,9 @@ public class BlockHeavenFire extends BlockFire
     }
 
 	/** registers Icons, set textures here **/
+	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister par1IconRegister)
+	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
 		this.blockIcon = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + "heavenFire_0");
 		
@@ -391,9 +348,18 @@ public class BlockHeavenFire extends BlockFire
 				par1IconRegister.registerIcon(Reference.MOD_ID + ":" + "heavenFire_0"), par1IconRegister.registerIcon(Reference.MOD_ID + ":" + "heavenFire_1")
 				};
 	}
-
+	
+	@Override
 	@SideOnly(Side.CLIENT)
-	public IIcon getIIcon(int par1) {
+    public IIcon getFireIcon(int p_149840_1_)
+    {
+        return this.iconArray[p_149840_1_];
+    }
+
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public IIcon getIcon(int par1, int par2) {
 		return this.iconArray[par1];
 	}
 }

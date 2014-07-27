@@ -5,7 +5,6 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.main.Main;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -15,6 +14,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import com.jimmy.hh.dimension.Dimensions;
+import com.jimmy.hh.dimension.HeavenDimension;
 import com.jimmy.hh.dimension.world.transport.HeavenTeleporter;
 import com.jimmy.hh.reference.Reference;
 import com.jimmy.hh.tabs.HHCreativeTabs;
@@ -262,10 +262,10 @@ public class BlockHeavenPortal extends BlockBreakable
 			{
 				thePlayer.timeUntilPortal = 10;
 			}
-			else if (thePlayer.dimension != Dimensions.getHeavenId())
+			else if (thePlayer.dimension != HeavenDimension.getHeavenId())
 			{
 				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, Dimensions.getHeavenId(), new HeavenTeleporter(thePlayer.mcServer.worldServerForDimension(Dimensions.getHeavenId())));
+				thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, HeavenDimension.getHeavenId(), new HeavenTeleporter(thePlayer.mcServer.worldServerForDimension(HeavenDimension.getHeavenId())));
 			}
 			else {
 				thePlayer.timeUntilPortal = 10;
