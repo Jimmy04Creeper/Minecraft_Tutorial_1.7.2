@@ -87,7 +87,7 @@ public class ChunkProviderHeaven implements IChunkProvider
     double[] field_147426_g;
     int[][] field_73219_j = new int[32][32];
     private static final String __OBFID = "CL_00000396";
-
+    
     {
         caveGenerator = TerrainGen.getModdedMapGen(caveGenerator, CAVE);
         strongholdGenerator = (MapGenStronghold) TerrainGen.getModdedMapGen(strongholdGenerator, STRONGHOLD);
@@ -184,7 +184,7 @@ public class ChunkProviderHeaven implements IChunkProvider
                             {
                                 if ((d15 += d16) > 0.0D)
                                 {
-                                    p_147424_3_[j3 += short1] = HHBlocks.heavenStone;
+                                    p_147424_3_[j3 += short1] = Blocks.stone;
                                 }
                                 else if (k2 * 8 + l2 < b0)
                                 {

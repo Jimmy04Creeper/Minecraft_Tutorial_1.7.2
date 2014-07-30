@@ -15,7 +15,7 @@ import com.jimmy.hh.tabs.HHCreativeTabs;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockHeavenGrass extends Block{
+public class BlockHellGrass extends Block{
 	
 	/** Icons **/
 	@SideOnly(Side.CLIENT)
@@ -25,7 +25,7 @@ public class BlockHeavenGrass extends Block{
 	@SideOnly(Side.CLIENT)
 	private IIcon grassBottom;
 
-	public BlockHeavenGrass(String blockName, Material material, float hardness){
+	public BlockHellGrass(String blockName, Material material, float hardness){
 		super(Material.grass);
 		this.setTickRandomly(true);
 		this.setBlockName(blockName);
@@ -67,7 +67,7 @@ public class BlockHeavenGrass extends Block{
 	public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random){
 		if (!par1World.isRemote){
 			if (par1World.getBlockLightValue(par2, par3 + 1, par4) < 4 && par1World.getBlockLightOpacity(par2, par3 + 1, par4) > 2){
-				par1World.setBlock(par2, par3, par4, HHBlocks.heavenDirt);
+				par1World.setBlock(par2, par3, par4, HHBlocks.hellDirt);
 			}
 			else if (par1World.getBlockLightValue(par2, par3 + 1, par4) >= 9){
 				for (int l = 0; l < 4; ++l){
@@ -76,8 +76,8 @@ public class BlockHeavenGrass extends Block{
 					int k1 = par4 + par5Random.nextInt(3) - 1;
 					Block l1 = par1World.getBlock(i1, j1 + 1, k1);
 
-					if (par1World.getBlock(i1, j1, k1) == HHBlocks.heavenDirt && par1World.getBlockLightValue(i1, j1 + 1, k1) >= 4 && par1World.getBlockLightOpacity(i1, j1 + 1, k1) <= 2){
-						par1World.setBlock(i1, j1, k1, HHBlocks.heavenGrass);
+					if (par1World.getBlock(i1, j1, k1) == HHBlocks.hellDirt && par1World.getBlockLightValue(i1, j1 + 1, k1) >= 4 && par1World.getBlockLightOpacity(i1, j1 + 1, k1) <= 2){
+						par1World.setBlock(i1, j1, k1, HHBlocks.hellGrass);
 					}
 				}
 			}
@@ -88,6 +88,6 @@ public class BlockHeavenGrass extends Block{
 	 * Returns the ID of the items to drop on destruction.
 	 */
 	public Item idDropped(int par1, Random par2Random, int par3){
-		return HHBlocks.heavenDirt.getItemDropped(0, par2Random, par3);
+		return HHBlocks.hellDirt.getItemDropped(0, par2Random, par3);
 	}
 }

@@ -5,5 +5,12 @@ tile.heavenLeaf.name=Heaven Leaf
 tile.heavenFire.name=Heaven Fire
 tile.heavenPortal.name=Heaven Portal
 
+tile.hellDirt.name=Hell Dirt
+tile.hellStone.name=Hell Stone
+tile.hellGrass.name=Hell Grass
+tile.hellLeaf.name=Hell Leaf
+tile.hellFire.name=Hell Fire
+tile.hellPortal.name=Hell Portal
+
 itemGroup.hhBlocks=Heaven & Hell Blocks
 itemGroup.hhItems=Heaven & Hell Items

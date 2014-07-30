@@ -23,7 +23,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockHeavenFire extends BlockFire
+public class BlockHellFire extends BlockFire
 {
 	private int[] chanceToEncourageFire = new int[256];
 	private int[] abilityToCatchFire = new int[256];
@@ -31,7 +31,7 @@ public class BlockHeavenFire extends BlockFire
 	@SideOnly(Side.CLIENT)
 	private IIcon[] iconArray;
 
-	public BlockHeavenFire(String blockName)
+	public BlockHellFire(String blockName)
 	{
 		super();
 		setTickRandomly(true);
@@ -262,9 +262,9 @@ public class BlockHeavenFire extends BlockFire
 		{
 			par1World.playSound(par2 + 0.5F, par3 + 0.5F, par4 + 0.5F, "fire.fire", 1.0F + par5Random.nextFloat(), par5Random.nextFloat() * 0.7F + 0.3F, false);
 		}
-		if ((!par1World.doesBlockHaveSolidTopSurface(par1World, par2, par3 - 1, par4)) && (!((BlockHeavenFire) HHBlocks.heavenFire).canBlockCatchFire(par1World, par2, par3 - 1, par4, ForgeDirection.UP)))
+		if ((!par1World.doesBlockHaveSolidTopSurface(par1World, par2, par3 - 1, par4)) && (!((BlockHellFire) HHBlocks.hellFire).canBlockCatchFire(par1World, par2, par3 - 1, par4, ForgeDirection.UP)))
 		{
-			if (((BlockHeavenFire) HHBlocks.heavenFire).canBlockCatchFire(par1World, par2 - 1, par3, par4, ForgeDirection.EAST))
+			if (((BlockHellFire) HHBlocks.hellFire).canBlockCatchFire(par1World, par2 - 1, par3, par4, ForgeDirection.EAST))
 			{
 				for (int l = 0; l < 2; l++)
 				{
@@ -274,7 +274,7 @@ public class BlockHeavenFire extends BlockFire
 					par1World.spawnParticle("largesmoke", f, f1, f2, 0.0D, 0.0D, 0.0D);
 				}
 			}
-			if (((BlockHeavenFire) HHBlocks.heavenFire).canBlockCatchFire(par1World, par2 + 1, par3, par4, ForgeDirection.WEST))
+			if (((BlockHellFire) HHBlocks.hellFire).canBlockCatchFire(par1World, par2 + 1, par3, par4, ForgeDirection.WEST))
 			{
 				for (int l = 0; l < 2; l++)
 				{
@@ -284,7 +284,7 @@ public class BlockHeavenFire extends BlockFire
 					par1World.spawnParticle("largesmoke", f, f1, f2, 0.0D, 0.0D, 0.0D);
 				}
 			}
-			if (((BlockHeavenFire) HHBlocks.heavenFire).canBlockCatchFire(par1World, par2, par3, par4 - 1, ForgeDirection.SOUTH))
+			if (((BlockHellFire) HHBlocks.hellFire).canBlockCatchFire(par1World, par2, par3, par4 - 1, ForgeDirection.SOUTH))
 			{
 				for (int l = 0; l < 2; l++)
 				{
@@ -294,7 +294,7 @@ public class BlockHeavenFire extends BlockFire
 					par1World.spawnParticle("largesmoke", f, f1, f2, 0.0D, 0.0D, 0.0D);
 				}
 			}
-			if (((BlockHeavenFire) HHBlocks.heavenFire).canBlockCatchFire(par1World, par2, par3, par4 + 1, ForgeDirection.NORTH))
+			if (((BlockHellFire) HHBlocks.hellFire).canBlockCatchFire(par1World, par2, par3, par4 + 1, ForgeDirection.NORTH))
 			{
 				for (int l = 0; l < 2; l++)
 				{
@@ -304,7 +304,7 @@ public class BlockHeavenFire extends BlockFire
 					par1World.spawnParticle("largesmoke", f, f1, f2, 0.0D, 0.0D, 0.0D);
 				}
 			}
-			if (((BlockHeavenFire) HHBlocks.heavenFire).canBlockCatchFire(par1World, par2, par3 + 1, par4, ForgeDirection.DOWN))
+			if (((BlockHellFire) HHBlocks.hellFire).canBlockCatchFire(par1World, par2, par3 + 1, par4, ForgeDirection.DOWN))
 			{
 				for (int l = 0; l < 2; l++)
 				{
@@ -343,10 +343,10 @@ public class BlockHeavenFire extends BlockFire
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		this.blockIcon = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + "heavenFire_0");
+		this.blockIcon = par1IconRegister.registerIcon(Reference.MOD_ID + ":" + "hellFire_0");
 		
 		this.iconArray = new IIcon[] { 
-				par1IconRegister.registerIcon(Reference.MOD_ID + ":" + "heavenFire_0"), par1IconRegister.registerIcon(Reference.MOD_ID + ":" + "heavenFire_1")
+				par1IconRegister.registerIcon(Reference.MOD_ID + ":" + "hellFire_0"), par1IconRegister.registerIcon(Reference.MOD_ID + ":" + "hellFire_1")
 				};
 	}
 	

@@ -22,5 +22,11 @@ public class BlockBasic extends Block{
     	this.setCreativeTab(HHCreativeTabs.hhBlocks);
     	this.blockHardness = hardness;
     	this.setStepSound(soundTypeGrass);
+    	this.setLightLevel(newLightLevel());
     }
+
+    //will add to set custom block lght levels for each block
+	public float newLightLevel() {
+		return 0f;
+	}
 }
