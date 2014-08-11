@@ -4,12 +4,15 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBreakable;
+import net.minecraft.block.BlockPortal;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.util.Direction;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -24,6 +27,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockHeavenPortal extends BlockBreakable
 {
+
+	public static final int[][] field_150001_a = new int[][] {new int[0], {3, 1}, {2, 0}};
+
 	public BlockHeavenPortal(String blockName)
 	{
 		super(Reference.MOD_ID + ":" + "heavenPortal", Material.portal, false);
@@ -33,7 +39,7 @@ public class BlockHeavenPortal extends BlockBreakable
 		this.setCreativeTab(HHCreativeTabs.hhBlocks);
 		this.setBlockName(blockName);
 	}
-	
+
 	/**
 	 * Ticks the block if it's been scheduled
 	 */
@@ -57,7 +63,7 @@ public class BlockHeavenPortal extends BlockBreakable
 			}
 		}
 	}
-	
+
 	/**
 	 * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
 	 * cleared to be reused)
@@ -66,7 +72,7 @@ public class BlockHeavenPortal extends BlockBreakable
 	{
 		return null;
 	}
-	
+
 	/**
 	 * Updates the blocks bounds based on its current state. Args: world, x, y, z
 	 */
@@ -87,7 +93,7 @@ public class BlockHeavenPortal extends BlockBreakable
 			this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f1, 0.5F + f, 1.0F, 0.5F + f1);
 		}
 	}
-	
+
 	/**
 	 * Is this block (a) opaque and (B) a full 1m cube? This determines whether or not to render the shared face of two
 	 * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
@@ -96,7 +102,7 @@ public class BlockHeavenPortal extends BlockBreakable
 	{
 		return false;
 	}
-	
+
 	/**
 	 * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
 	 */
@@ -105,7 +111,7 @@ public class BlockHeavenPortal extends BlockBreakable
 	{
 		return false;
 	}
-	
+
 	/**
 	 * Checks to see if this location is valid to create a portal and will return True if it does. Args: world, x, y, z
 	 */
@@ -166,7 +172,7 @@ public class BlockHeavenPortal extends BlockBreakable
 			return true;
 		}
 	}
-	
+
 	/**
 	 * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
 	 * their own) Args: x, y, z, neighbor blockID
@@ -218,7 +224,7 @@ public class BlockHeavenPortal extends BlockBreakable
 			}
 		}
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	/**
 	 * Returns true if the given side of this block type should be rendered, if the adjacent block is at the given
@@ -241,7 +247,7 @@ public class BlockHeavenPortal extends BlockBreakable
 			return flag4 && par5 == 4 ? true : (flag4 && par5 == 5 ? true : (flag5 && par5 == 2 ? true : flag5 && par5 == 3));
 		}
 	}
-	
+
 	/**
 	 * Returns the quantity of items to drop on block destruction.
 	 */
@@ -249,7 +255,7 @@ public class BlockHeavenPortal extends BlockBreakable
 	{
 		return 0;
 	}
-	
+
 	/**
 	 * Triggered whenever an entity collides with this block (enters into the block). Args: world, x, y, z, entity
 	 */
@@ -273,7 +279,7 @@ public class BlockHeavenPortal extends BlockBreakable
 			}
 		}
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	/**
 	 * Returns which pass should this block be rendered on. 0 for solids and 1 for alpha
@@ -282,7 +288,7 @@ public class BlockHeavenPortal extends BlockBreakable
 	{
 		return 1;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	/**
 	 * A randomly called display update to be able to add particles or other items for display
@@ -318,7 +324,7 @@ public class BlockHeavenPortal extends BlockBreakable
 			par1World.spawnParticle("portal", d0, d1, d2, d3, d4, d5);
 		}
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	/**
 	 * only called by clickMiddleMouseButton , and passed to inventory.setCurrentItem (along with isCreative)
@@ -326,5 +332,203 @@ public class BlockHeavenPortal extends BlockBreakable
 	public int idPicked(World par1World, int par2, int par3, int par4)
 	{
 		return 0;
+	}
+
+	public boolean getSize(World par1World, int par2, int par3, int par4) {
+		return false;
+	}
+
+	public boolean func_150000_e(World p_150000_1_, int p_150000_2_, int p_150000_3_, int p_150000_4_)
+	{
+		BlockHeavenPortal.Size size = new BlockHeavenPortal.Size(p_150000_1_, p_150000_2_, p_150000_3_, p_150000_4_, 1);
+		BlockHeavenPortal.Size size1 = new BlockHeavenPortal.Size(p_150000_1_, p_150000_2_, p_150000_3_, p_150000_4_, 2);
+
+		if (size.func_150860_b() && size.field_150864_e == 0)
+		{
+			size.func_150859_c();
+			return true;
+		}
+		else if (size1.func_150860_b() && size.field_150864_e == 0)
+		{
+			size1.func_150859_c();
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public static class Size
+	{
+		private final World field_150867_a;
+		private final int field_150865_b;
+		private final int field_150866_c;
+		private final int field_150863_d;
+		public int field_150864_e = 0;
+		private ChunkCoordinates field_150861_f;
+		private int field_150862_g;
+		private int field_150868_h;
+		private static final String __OBFID = "CL_00000285";
+
+		public Size(World p_i45415_1_, int p_i45415_2_, int p_i45415_3_, int p_i45415_4_, int p_i45415_5_)
+		{
+			this.field_150867_a = p_i45415_1_;
+			this.field_150865_b = p_i45415_5_;
+			this.field_150863_d = BlockPortal.field_150001_a[p_i45415_5_][0];
+			this.field_150866_c = BlockPortal.field_150001_a[p_i45415_5_][1];
+
+			for (int i1 = p_i45415_3_; p_i45415_3_ > i1 - 21 && p_i45415_3_ > 0 && this.func_150857_a(p_i45415_1_.getBlock(p_i45415_2_, p_i45415_3_ - 1, p_i45415_4_)); --p_i45415_3_)
+			{
+				;
+			}
+
+			int j1 = this.func_150853_a(p_i45415_2_, p_i45415_3_, p_i45415_4_, this.field_150863_d) - 1;
+
+			if (j1 >= 0)
+			{
+				this.field_150861_f = new ChunkCoordinates(p_i45415_2_ + j1 * Direction.offsetX[this.field_150863_d], p_i45415_3_, p_i45415_4_ + j1 * Direction.offsetZ[this.field_150863_d]);
+				this.field_150868_h = this.func_150853_a(this.field_150861_f.posX, this.field_150861_f.posY, this.field_150861_f.posZ, this.field_150866_c);
+
+				if (this.field_150868_h < 2 || this.field_150868_h > 21)
+				{
+					this.field_150861_f = null;
+					this.field_150868_h = 0;
+				}
+			}
+
+			if (this.field_150861_f != null)
+			{
+				this.field_150862_g = this.func_150858_a();
+			}
+		}
+
+		protected int func_150853_a(int p_150853_1_, int p_150853_2_, int p_150853_3_, int p_150853_4_)
+		{
+			int j1 = Direction.offsetX[p_150853_4_];
+			int k1 = Direction.offsetZ[p_150853_4_];
+			int i1;
+			Block block;
+
+			for (i1 = 0; i1 < 22; ++i1)
+			{
+				block = this.field_150867_a.getBlock(p_150853_1_ + j1 * i1, p_150853_2_, p_150853_3_ + k1 * i1);
+
+				if (!this.func_150857_a(block))
+				{
+					break;
+				}
+
+				Block block1 = this.field_150867_a.getBlock(p_150853_1_ + j1 * i1, p_150853_2_ - 1, p_150853_3_ + k1 * i1);
+
+				if (block1 != HHBlocks.heavenPortal)
+				{
+					break;
+				}
+			}
+
+			block = this.field_150867_a.getBlock(p_150853_1_ + j1 * i1, p_150853_2_, p_150853_3_ + k1 * i1);
+			return block == HHBlocks.heavenPortal ? i1 : 0;
+		}
+
+		protected int func_150858_a()
+		{
+			int i;
+			int j;
+			int k;
+			int l;
+			label56:
+
+				for (this.field_150862_g = 0; this.field_150862_g < 21; ++this.field_150862_g)
+				{
+					i = this.field_150861_f.posY + this.field_150862_g;
+
+					for (j = 0; j < this.field_150868_h; ++j)
+					{
+						k = this.field_150861_f.posX + j * Direction.offsetX[BlockPortal.field_150001_a[this.field_150865_b][1]];
+						l = this.field_150861_f.posZ + j * Direction.offsetZ[BlockPortal.field_150001_a[this.field_150865_b][1]];
+						Block block = this.field_150867_a.getBlock(k, i, l);
+
+						if (!this.func_150857_a(block))
+						{
+							break label56;
+						}
+
+						if (block == HHBlocks.heavenPortal)
+						{
+							++this.field_150864_e;
+						}
+
+						if (j == 0)
+						{
+							block = this.field_150867_a.getBlock(k + Direction.offsetX[BlockPortal.field_150001_a[this.field_150865_b][0]], i, l + Direction.offsetZ[BlockPortal.field_150001_a[this.field_150865_b][0]]);
+
+							if (block != HHBlocks.heavenPortal)
+							{
+								break label56;
+							}
+						}
+						else if (j == this.field_150868_h - 1)
+						{
+							block = this.field_150867_a.getBlock(k + Direction.offsetX[BlockPortal.field_150001_a[this.field_150865_b][1]], i, l + Direction.offsetZ[BlockPortal.field_150001_a[this.field_150865_b][1]]);
+
+							if (block != HHBlocks.heavenPortal)
+							{
+								break label56;
+							}
+						}
+					}
+				}
+
+			for (i = 0; i < this.field_150868_h; ++i)
+			{
+				j = this.field_150861_f.posX + i * Direction.offsetX[BlockPortal.field_150001_a[this.field_150865_b][1]];
+				k = this.field_150861_f.posY + this.field_150862_g;
+				l = this.field_150861_f.posZ + i * Direction.offsetZ[BlockPortal.field_150001_a[this.field_150865_b][1]];
+
+				if (this.field_150867_a.getBlock(j, k, l) != HHBlocks.heavenPortal)
+				{
+					this.field_150862_g = 0;
+					break;
+				}
+			}
+
+			if (this.field_150862_g <= 21 && this.field_150862_g >= 3)
+			{
+				return this.field_150862_g;
+			}
+			else
+			{
+				this.field_150861_f = null;
+				this.field_150868_h = 0;
+				this.field_150862_g = 0;
+				return 0;
+			}
+		}
+
+		protected boolean func_150857_a(Block p_150857_1_)
+		{
+			return p_150857_1_.getMaterial() == Material.air || p_150857_1_ == Blocks.fire || p_150857_1_ == HHBlocks.heavenPortal || p_150857_1_ == HHBlocks.heavenPortal;
+		}
+
+		public boolean func_150860_b()
+		{
+			return this.field_150861_f != null && this.field_150868_h >= 2 && this.field_150868_h <= 21 && this.field_150862_g >= 3 && this.field_150862_g <= 21;
+		}
+
+		public void func_150859_c()
+		{
+			for (int i = 0; i < this.field_150868_h; ++i)
+			{
+				int j = this.field_150861_f.posX + Direction.offsetX[this.field_150866_c] * i;
+				int k = this.field_150861_f.posZ + Direction.offsetZ[this.field_150866_c] * i;
+
+				for (int l = 0; l < this.field_150862_g; ++l)
+				{
+					int i1 = this.field_150861_f.posY + l;
+					this.field_150867_a.setBlock(j, i1, k, HHBlocks.heavenPortal, this.field_150865_b, 2);
+				}
+			}
+		}
 	}
 }

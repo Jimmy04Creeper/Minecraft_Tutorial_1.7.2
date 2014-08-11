@@ -1,12 +1,11 @@
 package com.jimmy.hh.dimension.world.biomes;
 
-import java.util.Random;
+import ibxm.Player;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.biome.BiomeGenBase;
 
 import com.jimmy.hh.blocks.HHBlocks;
-
-import net.minecraft.block.material.Material;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class BiomeGenHeaven extends BiomeGenBase
 {
@@ -20,7 +19,7 @@ public class BiomeGenHeaven extends BiomeGenBase
 		this.spawnableCreatureList.clear();
 		this.topBlock = (HHBlocks.heavenGrass);
 		this.fillerBlock = (HHBlocks.heavenDirt);
-		this.setBiomeName("Tutorial");
+		this.setBiomeName("Heaven");
 
 		/** this changes the water colour **/
 		this.waterColorMultiplier = 0xE42E57;

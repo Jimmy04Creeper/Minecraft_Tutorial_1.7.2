@@ -241,6 +241,19 @@ public class BlockHeavenFire extends BlockFire
 
 	public void onBlockAdded(World par1World, int par2, int par3, int par4)
 	{
+		if(par1World.provider.dimensionId > 0 || !HHBlocks.heavenPortal.func_150000_e(par1World, par2, par3, par4)){
+			if (!World.doesBlockHaveSolidTopSurface(par1World, par2, par3 - 1, par4) && !this.canNeighborBurn(par1World, par2, par3, par4))
+            {
+                par1World.setBlockToAir(par2, par3, par4);
+            }
+            else
+            {
+                par1World.scheduleBlockUpdate(par2, par3, par4, this, this.tickRate(par1World) + par1World.rand.nextInt(10));
+            }
+		}
+		
+		
+		
 		/** Change these to your portal frame and Portal block **/
 		if ((par1World.getBlock(par2, par3 - 1, par4) != Blocks.diamond_block) || (!((BlockHeavenPortal) HHBlocks.heavenPortal).tryToCreatePortal(par1World, par2, par3, par4)))
 		{

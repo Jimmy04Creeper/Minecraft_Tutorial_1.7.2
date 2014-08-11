@@ -21,7 +21,7 @@ public class BiomeGenHells extends BiomeGenBase
 		this.spawnableCreatureList.clear();
 		this.topBlock = (Blocks.netherrack);
 		this.fillerBlock = (Blocks.lava);
-		this.setBiomeName("Tutorial");
+		this.setBiomeName("HELL");
 
 		/** this changes the water colour **/
 		this.waterColorMultiplier = 0xE42E57;
