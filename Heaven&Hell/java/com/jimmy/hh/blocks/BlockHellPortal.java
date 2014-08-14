@@ -267,11 +267,11 @@ public class BlockHellPortal extends BlockBreakable
 			else if (thePlayer.dimension != HeavenDimension.getHeavenId())
 			{
 				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, HeavenDimension.getHeavenId(), new HeavenTeleporter(thePlayer.mcServer.worldServerForDimension(HeavenDimension.getHeavenId())));
+				thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, HeavenDimension.getHeavenId());
 			}
 			else {
 				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, 0, new HeavenTeleporter(thePlayer.mcServer.worldServerForDimension(0)));
+				thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, 0);
 			}
 		}
 	}

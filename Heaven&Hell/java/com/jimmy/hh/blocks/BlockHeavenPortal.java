@@ -4,7 +4,6 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBreakable;
-import net.minecraft.block.BlockPortal;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -259,6 +258,7 @@ public class BlockHeavenPortal extends BlockBreakable
 	/**
 	 * Triggered whenever an entity collides with this block (enters into the block). Args: world, x, y, z, entity
 	 */
+	@Override
 	public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity par5Entity)
 	{
 		if ((par5Entity.ridingEntity == null) && (par5Entity.riddenByEntity == null) && ((par5Entity instanceof EntityPlayerMP)))
@@ -267,16 +267,15 @@ public class BlockHeavenPortal extends BlockBreakable
 			if (thePlayer.timeUntilPortal > 0)
 			{
 				thePlayer.timeUntilPortal = 10;
-			}
-			else if (thePlayer.dimension != HeavenDimension.getHeavenId())
-			{
-				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, HeavenDimension.getHeavenId(), new HeavenTeleporter(thePlayer.mcServer.worldServerForDimension(HeavenDimension.getHeavenId())));
-			}
-			else {
-				thePlayer.timeUntilPortal = 10;
-				thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, 0, new HeavenTeleporter(thePlayer.mcServer.worldServerForDimension(0)));
-			}
+			} else if (thePlayer.dimension != HeavenDimension.getHeavenId())
+			 {
+				 thePlayer.timeUntilPortal = 10;
+				 thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, HeavenDimension.getHeavenId());
+			 }
+			 else {
+				 thePlayer.timeUntilPortal = 10;
+				 thePlayer.mcServer.getConfigurationManager().transferPlayerToDimension(thePlayer, 0);
+			 }
 		}
 	}
 
@@ -375,8 +374,8 @@ public class BlockHeavenPortal extends BlockBreakable
 		{
 			this.field_150867_a = p_i45415_1_;
 			this.field_150865_b = p_i45415_5_;
-			this.field_150863_d = BlockPortal.field_150001_a[p_i45415_5_][0];
-			this.field_150866_c = BlockPortal.field_150001_a[p_i45415_5_][1];
+			this.field_150863_d = BlockHeavenPortal.field_150001_a[p_i45415_5_][0];
+			this.field_150866_c = BlockHeavenPortal.field_150001_a[p_i45415_5_][1];
 
 			for (int i1 = p_i45415_3_; p_i45415_3_ > i1 - 21 && p_i45415_3_ > 0 && this.func_150857_a(p_i45415_1_.getBlock(p_i45415_2_, p_i45415_3_ - 1, p_i45415_4_)); --p_i45415_3_)
 			{
@@ -445,8 +444,8 @@ public class BlockHeavenPortal extends BlockBreakable
 
 					for (j = 0; j < this.field_150868_h; ++j)
 					{
-						k = this.field_150861_f.posX + j * Direction.offsetX[BlockPortal.field_150001_a[this.field_150865_b][1]];
-						l = this.field_150861_f.posZ + j * Direction.offsetZ[BlockPortal.field_150001_a[this.field_150865_b][1]];
+						k = this.field_150861_f.posX + j * Direction.offsetX[BlockHeavenPortal.field_150001_a[this.field_150865_b][1]];
+						l = this.field_150861_f.posZ + j * Direction.offsetZ[BlockHeavenPortal.field_150001_a[this.field_150865_b][1]];
 						Block block = this.field_150867_a.getBlock(k, i, l);
 
 						if (!this.func_150857_a(block))
@@ -461,7 +460,7 @@ public class BlockHeavenPortal extends BlockBreakable
 
 						if (j == 0)
 						{
-							block = this.field_150867_a.getBlock(k + Direction.offsetX[BlockPortal.field_150001_a[this.field_150865_b][0]], i, l + Direction.offsetZ[BlockPortal.field_150001_a[this.field_150865_b][0]]);
+							block = this.field_150867_a.getBlock(k + Direction.offsetX[BlockHeavenPortal.field_150001_a[this.field_150865_b][0]], i, l + Direction.offsetZ[BlockHeavenPortal.field_150001_a[this.field_150865_b][0]]);
 
 							if (block != HHBlocks.heavenPortal)
 							{
@@ -470,7 +469,7 @@ public class BlockHeavenPortal extends BlockBreakable
 						}
 						else if (j == this.field_150868_h - 1)
 						{
-							block = this.field_150867_a.getBlock(k + Direction.offsetX[BlockPortal.field_150001_a[this.field_150865_b][1]], i, l + Direction.offsetZ[BlockPortal.field_150001_a[this.field_150865_b][1]]);
+							block = this.field_150867_a.getBlock(k + Direction.offsetX[BlockHeavenPortal.field_150001_a[this.field_150865_b][1]], i, l + Direction.offsetZ[BlockHeavenPortal.field_150001_a[this.field_150865_b][1]]);
 
 							if (block != HHBlocks.heavenPortal)
 							{
@@ -482,9 +481,9 @@ public class BlockHeavenPortal extends BlockBreakable
 
 			for (i = 0; i < this.field_150868_h; ++i)
 			{
-				j = this.field_150861_f.posX + i * Direction.offsetX[BlockPortal.field_150001_a[this.field_150865_b][1]];
+				j = this.field_150861_f.posX + i * Direction.offsetX[BlockHeavenPortal.field_150001_a[this.field_150865_b][1]];
 				k = this.field_150861_f.posY + this.field_150862_g;
-				l = this.field_150861_f.posZ + i * Direction.offsetZ[BlockPortal.field_150001_a[this.field_150865_b][1]];
+				l = this.field_150861_f.posZ + i * Direction.offsetZ[BlockHeavenPortal.field_150001_a[this.field_150865_b][1]];
 
 				if (this.field_150867_a.getBlock(j, k, l) != HHBlocks.heavenPortal)
 				{

@@ -39,37 +39,35 @@ public class WorldProviderHeaven extends WorldProvider
 	}
 
 	/** Welcome message **/
+	@Override
 	public String getWelcomeMessage()
 	{
 		return "Entering the Tutorial Dimension";
 	}
 
 	/** What chunk provider to use **/
+	@Override
 	public IChunkProvider createChunkGenerator()
 	{
 		return new ChunkProviderHeaven(worldObj, worldObj.getSeed(), true);
 	}
 
 	/** Can player re-spawn here **/
+	@Override
 	public boolean canRespawnHere()
 	{
 		return false;
 	}
 
-	/** Set user message **/
-	// not sure if this works any more ?
-	protected synchronized String setUserMessage(String par1Str)
-	{
-		return "Building Heaven Dimension";
-	}
-
 	/** Determines the dimension the player will be respawned in **/
+	@Override
 	public int getRespawnDimension(EntityPlayerMP player)
 	{
 		return 0;
 	}
 
 	/** Dimension Movement speed **/
+	@Override
 	public double getMovementFactor()
 	{
 		return 10.0;
